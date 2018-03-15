@@ -31,10 +31,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import roomdemo.wiseass.com.roomdemo.R;
-import roomdemo.wiseass.com.roomdemo.data.DataSourceInterface;
+import roomdemo.wiseass.com.roomdemo.data.ListItemDao;
 import roomdemo.wiseass.com.roomdemo.data.ListItem;
 import roomdemo.wiseass.com.roomdemo.logic.Controller;
-import roomdemo.wiseass.com.roomdemo.view.ViewInterface;
 
 
 /**
@@ -52,7 +51,7 @@ public class ControllerUnitTest {
     //We technically could've just used the FakeDataSource here, but you don't always want to use
     //Mocks over Fakes and vice versa. Depends on your use case.
     @Mock
-    DataSourceInterface dataSource;
+    ListItemDao dataSource;
 
     @Mock
     ViewInterface view;
@@ -102,7 +101,7 @@ public class ControllerUnitTest {
         controller.onListItemClick(TEST_ITEM, testViewRoot);
 
         Mockito.verify(view).startDetailActivity(
-                TEST_ITEM.getDateAndTime(),
+                TEST_ITEM.getItemId(),
                 TEST_ITEM.getMessage(),
                 TEST_ITEM.getColorResource(),
                 testViewRoot);

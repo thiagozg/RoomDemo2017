@@ -1,23 +1,59 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
 buildscript {
+    ext.kotlin_version = '1.2.30'
+    ext.anko_version = '0.10.3'
     repositories {
         jcenter()
+        google()
+        mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.3.3'
-
-        // NOTE: Do not place your application dependencies here; they belong
-        // in the individual module build.gradle files
+        classpath 'com.android.tools.build:gradle:3.0.1'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
 }
+apply plugin: 'kotlin'
 
 allprojects {
     repositories {
         jcenter()
+        google()
+        mavenCentral()
+
+        //VPI
+        maven { url "https://jitpack.io" }
     }
 }
 
-task clean(type: Delete) {
+clean {
     delete rootProject.buildDir
+}
+
+ext {
+    //3rd party
+    picassoVersion = '2.5.2'
+    circleImageViewVersion = '2.1.0'
+    viewPagerIndicatorVersion = '2.4.1'
+    daggerVersion = '2.13'
+
+    //android
+    supportLibraryVersion = '27.0.0'
+    constraintLayoutVersion = '1.0.2'
+    archLifecycleVersion = '1.0.3'
+    archLifecycleCompilerVersion = '1.0.0'
+    archLifecycleExtensionsVersion = '1.0.0'
+    roomVersion = '1.0.0'
+}
+
+compileKotlin {
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+}
+
+compileTestKotlin {
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
 }
